@@ -15,10 +15,12 @@ class SetLanguage
 	 */
 	public function handle($request, Closure $next)
 	{
-		if ( $request->user()->lang == 'es' ) {
+		if ( $request->user() ){
+			if ( $request->user()->lang == 'es' ) {
 			app()->setLocale('es');
-		} elseif( $request->user()->lang == 'en' ) {
-			app()->setLocale('en');
+			} elseif( $request->user()->lang == 'en' ) {
+				app()->setLocale('en');
+			}
 		} else {
 			app()->setLocale('es');
 		}

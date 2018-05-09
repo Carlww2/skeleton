@@ -9,8 +9,8 @@
 				</div>
 			</th>
 			<th>Imagen</th>
-			<th>Estatus</th>
-			<th>Acciones</th>
+			<th>@lang('status')</th>
+			<th>@lang('actions')</th>
 		</thead>
 		<tbody>
 			@foreach($banners as $banner)
@@ -27,9 +27,9 @@
 					</td>
 					<td>
 						@if($banner->status)
-						<span class="label label-success status" data-url="{{route('Banner.status')}}" data-id="{{$banner->id}}" data-toggle="tooltip" data-placement="top" title="Cambiar status">Activo</span>
+						<span class="label label-success status" data-url="{{route('Banner.status')}}" data-id="{{$banner->id}}" data-toggle="tooltip" data-placement="top" title="Cambiar status">@lang('panel.active')</span>
 						@else
-						<span class="label label-danger status" data-url="{{route('Banner.status')}}" data-id="{{$banner->id}}" data-toggle="tooltip" data-placement="top" title="Cambiar status">Inactivo</span>
+						<span class="label label-danger status" data-url="{{route('Banner.status')}}" data-id="{{$banner->id}}" data-toggle="tooltip" data-placement="top"title="Cambiar status">@lang('panel.inactive')</span>
 						@endif
 					</td>
 					<td>

@@ -9,8 +9,8 @@
 				</div>
 			</th>
 			<th>Título</th>
-			<th>Estatus</th>
-			<th>Acciones</th>
+			<th>@lang('status')</th>
+			<th>@lang('actions')</th>
 		</thead>
 		<tbody>
 			@foreach($news as $new)
@@ -25,9 +25,9 @@
 					<td>{{$new->title}}</td>
 					<td>
 						@if($new->status)
-						<span class="label label-success status" data-url="{{route('News.status')}}" data-id="{{$new->id}}" data-toggle="tooltip" data-placement="top" title="Cambiar status">Activo</span>
+						<span class="label label-success status" data-url="{{route('News.status')}}" data-id="{{$new->id}}" data-toggle="tooltip" data-placement="top" title="Cambiar status">@lang('panel.active')</span>
 						@else
-						<span class="label label-danger status" data-url="{{route('News.status')}}" data-id="{{$new->id}}" data-toggle="tooltip" data-placement="top" title="Cambiar status">Inactivo</span>
+						<span class="label label-danger status" data-url="{{route('News.status')}}" data-id="{{$new->id}}" data-toggle="tooltip" data-placement="top"title="Cambiar status">@lang('panel.inactive')</span>
 						@endif
 					</td>
 					<td>

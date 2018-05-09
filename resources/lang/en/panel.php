@@ -6,7 +6,12 @@ return [
 	'return' => "Return",
 	'cancel' => "Cancel",
 	'active' => "Active",
-	'inactive' => 'Inactive'
+	'inactive' => 'Inactive',
+	'status' => 'Status',
+	'actions' => 'Actions',
+	'create' => 'Create',
+	'update' => 'Update',
+	'list' => ':Item list',
 	#main.blade.php
 	'welcome' => 'Welcome',
 	'picture.profile' => 'Change profile picture',

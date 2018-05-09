@@ -8,7 +8,7 @@
 	</div>
 	@endif
 	<div class="page-title">
-		<h1>{{$banner->id ? 'Actualizar' : 'Crear'}} <span class="semi-bold">Banner</span></h1>
+		<h1>{{$banner->id ?  __('panel.update') : __('panel.create')}} <span class="semi-bold">Banner</span></h1>
 	</div>
 	<div class="row-fluid">
 	{{ Form::model($banner, ['route' => !$banner->id?['Banner.store']:['Banner.update', $banner->id], 'class' => 'form valid', 'id' => 'bannersForm' ,'autocomplete' => 'off', 'files' => true]) }}

@@ -6,9 +6,9 @@
 			<th>Nombre</th>
 			<th>Correo</th>
 			<th>Rol</th>
-			<th>Estatus</th>
+			<th>@lang('status')</th>
 			@if(Route::currentRouteName() == 'User.index1')
-			<th>Acciones</th>
+			<th>@lang('actions')</th>
 			@endif
 		</thead>
 		<tbody>
@@ -23,9 +23,9 @@
 					<td>{{$user->role->name}}</td>
 					<td>
 						@if($user->status)
-							<span class="label label-success status" data-url="{{route('User.status')}}" data-id="{{$user->id}}" data-toggle="tooltip" data-placement="top" title="Cambiar status">Activo</span>
+							<span class="label label-success status" data-url="{{route('User.status')}}" data-id="{{$user->id}}" data-toggle="tooltip" data-placement="top" title="Cambiar status">@lang('panel.active')</span>
 						@else
-							<span class="label label-danger status" data-url="{{route('User.status')}}" data-id="{{$user->id}}" data-toggle="tooltip" data-placement="top" title="Cambiar status">Inactivo</span>
+							<span class="label label-danger status" data-url="{{route('User.status')}}" data-id="{{$user->id}}" data-toggle="tooltip" data-placement="top"title="Cambiar status">@lang('panel.inactive')</span>
 						@endif
 					</td>
 

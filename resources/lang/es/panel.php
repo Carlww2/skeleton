@@ -6,13 +6,18 @@ return [
 	'return' => "Regrasar",
 	'cancel' => "Cancelar",
 	'active' => "Activo",
-	'inactive' => 'Inactivo'
-	#main.blade.php
+	'inactive' => 'Inactivo',
+	'status' => 'Estatus',
+	'actions' => 'Acciones',
+	'create' => 'Crear',
+	'update' => 'Actualizar',
+	'list' => 'Listado :Item',
+	#main
 	'welcome' => 'Bienvenido',
 	'picture.profile' => 'Cambiar foto de perfil',
 	'update.profile.picture' => 'Actualizar foto de perfil',
 	'log_out' => 'Cerrar sesión',
-	#company.blade.php
+	#company
 	'company' => 'Empresa',
 	'company.name' => "Nombre",
 	'company.description' => "Descripción",
@@ -20,4 +25,6 @@ return [
 	'company.terms_conditions' => "Términos y condiciones",
 	'company.privacy' => "Aviso de privacidad",
 	'company.logo' => "Logo",
+	#banner
+
 ];

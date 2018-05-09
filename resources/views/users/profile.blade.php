@@ -4,7 +4,7 @@
 <link href="{{asset('plugins/bootstrap-datepicker/css/datepicker.css')}}" rel="stylesheet" type="text/css" />
 <div class="container-fluid content-body">
 	<div class="page-title">
-		<h1>{{$user->id ? 'Actualizar' : 'Crear'}} <span class="semi-bold">Mi perfil</span></h1>
+		<h1>{{$user->id ?  __('panel.update') : __('panel.create')}} <span class="semi-bold">Mi perfil</span></h1>
 	</div>
 	<div class="row-fluid">
 		@if(session('msg'))

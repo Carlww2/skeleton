@@ -8,7 +8,7 @@
 	</div>
 	@endif
 	<div class="page-title">
-		<h1>{{$faq->id ? 'Actualizar' : 'Crear'}} <span class="semi-bold">Pregunta frecuente</span></h1>
+		<h1>{{$faq->id ?  __('panel.update') : __('panel.create')}} <span class="semi-bold">Pregunta frecuente</span></h1>
 	</div>
 	<div class="row-fluid">
 	{{ Form::model($faq, ['route' => !$faq->id?['Faq.store']:['Faq.update', $faq->id], 'class' => 'form valid', 'id' => 'faqsForm' ,'autocomplete' => 'off']) }}

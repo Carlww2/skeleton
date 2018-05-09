@@ -8,7 +8,7 @@
 	</div>
 	@endif
 	<div class="page-title">
-		<h1>{{$user->id ? 'Actualizar' : 'Crear'}} <span class="semi-bold">Administrador</span></h1>
+		<h1>{{$user->id ?  __('panel.update') : __('panel.create')}} <span class="semi-bold">Administrador</span></h1>
 	</div>
 	<div class="row-fluid">
 		{{ Form::model($user, ['route' => !$user->id?'User.store':['User.update',$user->id], 'class' => 'form valid', 'id' => 'UserForm' ,'autocomplete' => 'off']) }}
