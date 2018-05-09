@@ -88,7 +88,7 @@
 				</div>
 			</div>
 			<div class="row buttons-form">
-				{{Form::submit('Guardar',['class' => 'btn btn-success guardar', 'data-target' => 'UserForm'])}}
+				{{Form::submit(__('panel.save'),['class' => 'btn btn-success guardar', 'data-target' => 'UserForm'])}}
 			</div>
 		{{ Form::close() }}
 	</div>

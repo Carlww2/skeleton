@@ -119,7 +119,7 @@
 				</div>
 			@endif
 			<div class="row buttons-form">
-				{{Form::submit('Guardar',['class' => 'btn btn-success guardar', 'data-target' => 'DocuementsForm'])}}
+				{{Form::submit(__('panel.save'),['class' => 'btn btn-success guardar', 'data-target' => 'DocuementsForm'])}}
 			</div>
 		{{ Form::close() }}
 	</div>

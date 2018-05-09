@@ -40,8 +40,8 @@
 				</div>
 			</div>
 			<div class="row text-left buttons-form">
-				<a href="{{route('News')}}" class="btn btn-danger">Regresar</a>
-				{{Form::submit('Guardar',['class' => 'btn btn-success guardar', 'data-target' => 'newsForm'])}}
+				{{link_to(route('News'), $title = __('panel.return'), $attributes = ['class' => "btn btn-danger"], $secure = null)}}
+				{{Form::submit(__('panel.save'),['class' => 'btn btn-success guardar', 'data-target' => 'newsForm'])}}
 			</div>
 		{{ Form::close() }}
 	</div>

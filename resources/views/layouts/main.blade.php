@@ -49,7 +49,7 @@
 		<div class="modal-content">
 			<div class="modal-header text-center">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title" id="titleModal">Actualizar foto de perfil</h4>
+				<h4 class="modal-title" id="titleModal">@lang('panel.update.profile.picture')</h4>
 			</div>
 			<div class="modal-body">
 				{{ Form::model(auth()->user(), ['url' => route('User.updatePictue', auth()->user()->id), 'id' => 'pictureForm' ,'autocomplete' => 'off', 'files' => true]) }}
@@ -67,8 +67,8 @@
 				{{ Form::close() }}
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-				<button type="submit" class="btn btn-success guardar" data-target="pictureForm">Guardar</button>
+				<button type="button" class="btn btn-danger" data-dismiss="modal">@lang('panel.cancel')</button>
+				<button type="submit" class="btn btn-success guardar" data-target="pictureForm">@lang('panel.save')</button>
 			</div>
 		</div>
 	</div>
@@ -140,9 +140,9 @@
 							<div class="top-settings-dark fa fa-cog"></div>
 						</a>
 						<ul class="dropdown-menu pull-right" role="menu" aria-labelledby="user-options">
-							<li><a data-toggle="modal" data-target="#pictureModal" href="#"><i class="fa fa-picture-o" aria-hidden="true" style="font-size: 15px !important;"></i> Cambiar foto perfil</a></li>
+							<li><a data-toggle="modal" data-target="#pictureModal" href="#"><i class="fa fa-picture-o" aria-hidden="true" style="font-size: 15px !important;"></i> @lang('panel.picture.profile')</a></li>
 							<li>
-								<a href="#!" class="logout"><i class="fa fa-power-off" style="font-size: 15px !important;"></i> Cerrar sesión
+								<a href="#!" class="logout"><i class="fa fa-power-off" style="font-size: 15px !important;"></i> @lang('panel.log_out')
 									<form class="logout-form" action="{{ url('logout') }}" method="POST" style="display: none;">{{ csrf_field() }}</form>
 								</a>
 							</li>
@@ -169,7 +169,7 @@
 					<img src="{{asset(auth()->user()->photo)}}"  alt="" data-src="{{asset(auth()->user()->photo)}}" data-src-retina="{{!auth()->user()->photo?asset('/img/profiles/avatar2x.jpg'):asset('/img/profiles/'.auth()->user()->id.'/'.auth()->user()->photo)}}" width="69" height="69" />
 				</div>
 				<div class="user-info">
-					<div class="greeting">Bienvenido</div>
+					<div class="greeting">@lang('panel.welcome')</div>
 					<div class="username">{{auth()->user()->fullname}} <span class="semi-bold"></span></div>
 					<div class="status">Status<a href="#"><div class="status-icon green"></div>Online</a></div>
 				</div>
@@ -190,62 +190,17 @@
 						<li class="{{ ( Route::currentRouteName() == 'User.index2' ) ? 'active' : '' }}"> <a href="{{route('User.index2')}}"> Aplicación</a> </li>
 					</ul>
 				</li>
-				<?php /*
-					<li class="start {{ ( Route::currentRouteName()== 'Company' ) ? 'active' : '' }}">
-						<a href="{{route('Company')}}"> <i class="fa fa-info-circle"></i> <span class="title">Empresa</span> <span class="selected"></span></a>
-					</li>
-					<li class="start {{ ( in_array(Route::currentRouteName(),['News', 'News.form']) ) ? 'active open' : '' }}">
-						<a href="{{route('News')}}"> <i class="fa fa-newspaper-o"></i> <span class="title">Noticias</span> <span class="selected"></span></a>
-					</li>
-					<li class="start {{ ( in_array(Route::currentRouteName(),['Banner', 'Banner.form']) ) ? 'active open' : '' }}">
-						<a href="{{route('Banner')}}"> <i class="fa fa-image"></i> <span class="title">Banners</span> <span class="selected"></span></a>
-					</li>
-					<li class="start {{ ( in_array(Route::currentRouteName(),['Faq', 'Faq.form']) ) ? 'active open' : '' }}">
-						<a href="{{route('Faq')}}"> <i class="fa fa-question-circle"></i> <span class="title">Faqs</span> <span class="selected"></span></a>
-					</li>
-				*/?>
-				<li class="{{ in_array(Route::currentRouteName(), ['', ''] ) ? 'active' : '' }}">
-					<a href="#!">
-						<i class="fa fa-list-ul"></i> <span class="title">CRM</span> <span class="selected"></span> <span class="arrow"></span>
-					</a>
-					<ul class="sub-menu">
-						<li class="{{ ( in_array(Route::currentRouteName(),['', '']) ) ? 'active open' : '' }}">
-							<a href=""> Prospectos </a>
-						</li>
-						<li class="{{ ( in_array(Route::currentRouteName(),['', '']) ) ? 'active open' : '' }}">
-							<a href=""> Clientes </a>
-						</li>
-						<li class="{{ ( in_array(Route::currentRouteName(),['', '']) ) ? 'active open' : '' }}">
-							<a href=""> Plantillas </a>
-						</li>
-					</ul>
+				<li class="start {{ ( Route::currentRouteName()== 'Company' ) ? 'active' : '' }}">
+					<a href="{{route('Company')}}"> <i class="fa fa-info-circle"></i> <span class="title">Empresa</span> <span class="selected"></span></a>
 				</li>
-				<li class="{{ in_array(Route::currentRouteName(), ['', ''] ) ? 'active' : '' }}">
-					<a href="#!">
-						<i class="fa fa-money"></i> <span class="title">ERP</span> <span class="selected"></span> <span class="arrow"></span>
-					</a>
-					<ul class="sub-menu">
-						<li class="{{ ( in_array(Route::currentRouteName(),['Meeting', 'Meeting.form']) ) ? 'active open' : '' }}">
-							<a href=""> Ingresos </a>
-						</li>
-						<li class="{{ ( Route::currentRouteName() == 'User.index2' ) ? 'active' : '' }}">
-							<a href=""> Egresos </a>
-						</li>
-					</ul>
+				<li class="start {{ ( in_array(Route::currentRouteName(),['News', 'News.form']) ) ? 'active open' : '' }}">
+					<a href="{{route('News')}}"> <i class="fa fa-newspaper-o"></i> <span class="title">Noticias</span> <span class="selected"></span></a>
 				</li>
-
-				<li class="{{ in_array(Route::currentRouteName(), ['Meeting', 'Meeting.form'] ) ? 'active' : '' }}">
-					<a href="#!">
-						<i class="fa fa-calendar"></i> <span class="title">Calendario</span> <span class="selected"></span> <span class="arrow"></span>
-					</a>
-					<ul class="sub-menu">
-						<li class="{{ ( in_array(Route::currentRouteName(),['Meeting', 'Meeting.form']) ) ? 'active open' : '' }}">
-							<a href="{{route('Meeting')}}"> Reuniones </a>
-						</li>
-						<li class="{{ ( Route::currentRouteName() == 'User.index2' ) ? 'active' : '' }}">
-							<a href="{{route('Meeting')}}"> Agenda </a>
-						</li>
-					</ul>
+				<li class="start {{ ( in_array(Route::currentRouteName(),['Banner', 'Banner.form']) ) ? 'active open' : '' }}">
+					<a href="{{route('Banner')}}"> <i class="fa fa-image"></i> <span class="title">Banners</span> <span class="selected"></span></a>
+				</li>
+				<li class="start {{ ( in_array(Route::currentRouteName(),['Faq', 'Faq.form']) ) ? 'active open' : '' }}">
+					<a href="{{route('Faq')}}"> <i class="fa fa-question-circle"></i> <span class="title">Faqs</span> <span class="selected"></span></a>
 				</li>
 			</ul>
 			<div class="clearfix"></div>

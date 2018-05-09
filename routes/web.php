@@ -70,15 +70,6 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::patch('status-faq', 'FaqsController@status')->name('Faq.status');
 	Route::delete('eliminar-faq/{id}', 'FaqsController@destroy')->name('Faq.destroy');
 	Route::delete('eliminar-faqs', 'FaqsController@multipleDestroys')->name('Faq.multipleDestroys');
-
-	#Meeting
-	Route::get('reuniones', 'MeetingsController@index')->name('Meeting');
-	Route::get('formulario-reunion/{id?}', 'MeetingsController@form')->name('Meeting.form');
-	Route::post('alta-reunion', 'MeetingsController@store')->name('Meeting.store');
-	Route::put('actualizar-reunion/{id}', 'MeetingsController@update')->name('Meeting.update');
-	Route::patch('status-reunion', 'MeetingsController@status')->name('Meeting.status');
-	Route::delete('eliminar-reunion/{id}', 'MeetingsController@destroy')->name('Meeting.destroy');
-	Route::delete('eliminar-reuniones', 'MeetingsController@multipleDestroys')->name('Meeting.multipleDestroys');
 });
 
 #Rutas API

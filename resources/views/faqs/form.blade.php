@@ -29,8 +29,8 @@
 				</div>
 			</div>
 			<div class="row buttons-form">
-				<a href="{{route('Faq')}}" class="btn btn-danger">Regresar</a>
-				{{Form::submit('Guardar',['class' => 'btn btn-success guardar', 'data-target' => 'faqsForm'])}}
+				{{link_to(route('Faq'), $title = __('panel.return'), $attributes = ['class' => "btn btn-danger"], $secure = null)}}
+				{{Form::submit(__('panel.save'),['class' => 'btn btn-success guardar', 'data-target' => 'faqsForm'])}}
 			</div>
 		{{ Form::close() }}
 	</div>

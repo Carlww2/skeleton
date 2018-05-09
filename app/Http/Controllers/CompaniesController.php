@@ -16,17 +16,17 @@ class CompaniesController extends Controller
 
 	public function update($id, Request $req){
 		$company = Company::findOrFail($id);
-		$company->fill( $req->except('picture') );
+		$company->fill( $req->except('logo') );
 
-		if ( $req->hasFile('picture') ){
+		if ( $req->hasFile('logo') ){
 			$path = public_path()."/img/company";
 			if( !File::exists($path) ) {
 				File::makeDirectory(public_path()."/img/company/", 0777, true, true);
 			} else {
 				File::cleanDirectory(public_path()."/img/company/");
 			}
-			$company->picture = time().'.'.$req->file('picture')->getClientOriginalExtension();
-			Image::make($req->file('picture'))->save($path.'/'.$company->picture);
+			$company->logo = time().'.'.$req->file('logo')->getClientOriginalExtension();
+			Image::make($req->file('logo'))->save($path.'/'.$company->logo);
 		}
 
 		if ( $company->save() ){

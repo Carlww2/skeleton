@@ -8,7 +8,7 @@
 	</div>
 	@endif
 	<div class="page-title">
-		<h1><span class="semi-bold">Empresa</span></h1>
+		<h1><span class="semi-bold">@lang('panel.company')</span></h1>
 	</div>
 	<div class="row-fluid">
 		<div id="body-content">
@@ -18,32 +18,32 @@
 				@endif
 				<div class="row">
 					<div class="form-group col-md-12">
-						{{Form::label('name', 'Nombre', ['class' => 'control-label  required'])}}
-						{{Form::text('name', null, ['class' => 'form-control not-empty', 'data-name' => 'Título'])}}
+						{{Form::label('name', __('panel.company.name'), ['class' => 'control-label  required'])}}
+						{{Form::text('name', null, ['class' => 'form-control not-empty', 'data-name' => __('panel.company.name')])}}
 					</div>
 				</div>
 				<div class="row">
 					<div class="form-group col-md-12">
-						{{Form::label('description', 'Descrpción', ['class' => 'control-label  required'])}}
-						{{Form::textarea('description', null, ['class' => 'form-control not-empty', 'data-name' => 'Descripción'])}}
+						{{Form::label('description',  __('panel.company.description'), ['class' => 'control-label  required'])}}
+						{{Form::textarea('description', null, ['class' => 'form-control not-empty', 'data-name' => __('panel.company.description')])}}
 					</div>
 				</div>
 				<div class="row">
 					<div class="form-group col-md-12">
-						{{Form::label('philosophy', 'Filosofía de la empresa', ['class' => 'control-label  required'])}}
-						{{Form::textarea('philosophy', null, ['class' => 'form-control not-empty', 'data-name' => 'Filosofía de la empresa'])}}
+						{{Form::label('philosophy', __('panel.company.philosophy'), ['class' => 'control-label  required'])}}
+						{{Form::textarea('philosophy', null, ['class' => 'form-control not-empty', 'data-name' => __('panel.company.philosophy')])}}
 					</div>
 				</div>
 				<div class="row">
 					<div class="form-group col-md-12">
-						{{Form::label('terms_conditions', 'Terminos y condiciones', ['class' => 'control-label  required'])}}
-						{{Form::textarea('terms_conditions', null, ['class' => 'form-control not-empty', 'data-name' => 'Terminos y condiciones'])}}
+						{{Form::label('terms_conditions', __('panel.company.terms_conditions'), ['class' => 'control-label  required'])}}
+						{{Form::textarea('terms_conditions', null, ['class' => 'form-control not-empty', 'data-name' => __('panel.company.terms_conditions')])}}
 					</div>
 				</div>
 				<div class="row">
 					<div class="form-group col-md-12">
-						{{Form::label('privacy', 'Aviso de privacidad', ['class' => 'control-label  required'])}}
-						{{Form::textarea('privacy', null, ['class' => 'form-control not-empty', 'data-name' => 'Aviso de privacidad'])}}
+						{{Form::label('privacy', __('panel.company.privacy'), ['class' => 'control-label  required'])}}
+						{{Form::textarea('privacy', null, ['class' => 'form-control not-empty', 'data-name' => __('panel.company.privacy')])}}
 					</div>
 				</div>
 				<div class="row">
@@ -53,12 +53,12 @@
 						</div>
 					@endif
 					<div class="form-group col-md-{{$company->picture?'9':'12'}}">
-						{{Form::label('picture', 'Fotografía', ['class' => !$company->picture?'label-control required':'label-control'])}}
-						{{Form::file('picture', ['class' =>!$company->picture?'form-control not-empty file image':'form-control file image', 'data-name' => 'Fotografía'])}}
+						{{Form::label('picture',  __('panel.company.logo'), ['class' => !$company->picture?'label-control required':'label-control'])}}
+						{{Form::file('picture', ['class' =>!$company->picture?'form-control not-empty file image':'form-control file image', 'data-name' =>  __('panel.company.logo')])}}
 					</div>
 				</div>
 				<div class="row text-left buttons-form">
-					{{Form::submit('Guardar',['class' => 'btn btn-success guardar', 'data-target' => 'newsForm'])}}
+					{{Form::submit(__('panel.save'),['class' => 'btn btn-success guardar', 'data-target' => 'newsForm'])}}
 				</div>
 			{{ Form::close() }}
 		</div>

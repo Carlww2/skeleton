@@ -44,8 +44,8 @@
 			</div>
 			@endif
 			<div class="row buttons-form">
-				<a href="{{route('User.index1')}}" class="btn btn-danger">Regresar</a>
-				{{Form::submit('Guardar',['class' => 'btn btn-success guardar', 'data-target' => 'UserForm'])}}
+				{{link_to(route('User.index1'), $title = __('panel.return'), $attributes = ['class' => "btn btn-danger"], $secure = null)}}
+				{{Form::submit(__('panel.save'),['class' => 'btn btn-success guardar', 'data-target' => 'UserForm'])}}
 			</div>
 		{{ Form::close() }}
 	</div>
