@@ -142,7 +142,7 @@
 						<ul class="dropdown-menu pull-right" role="menu" aria-labelledby="user-options">
 							<li><a data-toggle="modal" data-target="#pictureModal" href="#"><i class="fa fa-picture-o" aria-hidden="true" style="font-size: 15px !important;"></i> @lang('panel.picture.profile')</a></li>
 							<li>
-								<a href="#!" class="logout"><i class="fa fa-power-off" style="font-size: 15px !important;"></i> @lang('panel.log_out')
+								<a href="#!" class="logout"><i class="fa fa-power-off" style="font-size: 15px !important;"></i> @lang('panel.log-out')
 									<form class="logout-form" action="{{ url('logout') }}" method="POST" style="display: none;">{{ csrf_field() }}</form>
 								</a>
 							</li>
@@ -191,13 +191,13 @@
 					</ul>
 				</li>
 				<li class="start {{ ( Route::currentRouteName()== 'Company' ) ? 'active' : '' }}">
-					<a href="{{route('Company')}}"> <i class="fa fa-info-circle"></i> <span class="title">Empresa</span> <span class="selected"></span></a>
+					<a href="{{route('Company')}}"> <i class="fa fa-info-circle"></i> <span class="title">@lang('panel.company')</span> <span class="selected"></span></a>
 				</li>
 				<li class="start {{ ( in_array(Route::currentRouteName(),['News', 'News.form']) ) ? 'active open' : '' }}">
-					<a href="{{route('News')}}"> <i class="fa fa-newspaper-o"></i> <span class="title">Noticias</span> <span class="selected"></span></a>
+					<a href="{{route('News')}}"> <i class="fa fa-newspaper-o"></i> <span class="title">@lang('panel.news')</span> <span class="selected"></span></a>
 				</li>
 				<li class="start {{ ( in_array(Route::currentRouteName(),['Banner', 'Banner.form']) ) ? 'active open' : '' }}">
-					<a href="{{route('Banner')}}"> <i class="fa fa-image"></i> <span class="title">Banners</span> <span class="selected"></span></a>
+					<a href="{{route('Banner')}}"> <i class="fa fa-image"></i> <span class="title">@lang('panel.banners')</span> <span class="selected"></span></a>
 				</li>
 				<li class="start {{ ( in_array(Route::currentRouteName(),['Faq', 'Faq.form']) ) ? 'active open' : '' }}">
 					<a href="{{route('Faq')}}"> <i class="fa fa-question-circle"></i> <span class="title">Faqs</span> <span class="selected"></span></a>

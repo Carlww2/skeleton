@@ -8,7 +8,7 @@
 	</div>
 	@endif
 	<div class="page-title">
-		<h1>{{$banner->id ?  __('panel.update') : __('panel.create')}} <span class="semi-bold">Banner</span></h1>
+		<h1>{{$banner->id ?  __('panel.update') : __('panel.create')}} <span class="semi-bold">@lang('panel.banner')</span></h1>
 	</div>
 	<div class="row-fluid">
 	{{ Form::model($banner, ['route' => !$banner->id?['Banner.store']:['Banner.update', $banner->id], 'class' => 'form valid', 'id' => 'bannersForm' ,'autocomplete' => 'off', 'files' => true]) }}
@@ -22,8 +22,8 @@
 					</div>
 				@endif
 				<div class="form-group col-md-{{$banner->image?'9':'12'}} {{$errors->banner->first('image')?'has-error':''}}">
-					{{Form::label('image', 'Imagen', ['class' => !$banner->id?'label-control required':'label-control'])}}
-					{{Form::file('image', ['class' =>!$banner->id?'form-control not-empty file image':'form-control file image', 'data-name' => 'Foto'])}}
+					{{Form::label('image', __('panel.banner.image'), ['class' => !$banner->id?'label-control required':'label-control'])}}
+					{{Form::file('image', ['class' =>!$banner->id?'form-control not-empty file image':'form-control file image', 'data-name' => __('panel.banner.image')])}}
 				</div>
 			</div>
 			<div class="row text-left buttons-form">

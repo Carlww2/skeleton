@@ -12,11 +12,13 @@ return [
 	'create' => 'Crear',
 	'update' => 'Actualizar',
 	'list' => 'Listado :Item',
+	'new' => 'Nuevo :Item',
+	'multiple-delete' => 'Eliminar múltiple',
 	#main
 	'welcome' => 'Bienvenido',
 	'picture.profile' => 'Cambiar foto de perfil',
 	'update.profile.picture' => 'Actualizar foto de perfil',
-	'log_out' => 'Cerrar sesión',
+	'log-out' => 'Cerrar sesión',
 	#company
 	'company' => 'Empresa',
 	'company.name' => "Nombre",
@@ -26,5 +28,14 @@ return [
 	'company.privacy' => "Aviso de privacidad",
 	'company.logo' => "Logo",
 	#banner
-
+	'banners' => 'Banners',
+	'banner' => 'Banner',
+	'banner.image' => 'Imagen',
+	#news
+	'news' => 'Noticias',
+	'new' => 'Noticia',
+	'news.title' => 'Título',
+	'news.content' => 'Contenido',
+	'news.photo' => 'Foto'
+	#faqs
 ];

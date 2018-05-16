@@ -8,7 +8,7 @@
 					<label for="checkboxParent"></label>
 				</div>
 			</th>
-			<th>Título</th>
+			<th>@lang('panel.news.title')</th>
 			<th>@lang('status')</th>
 			<th>@lang('actions')</th>
 		</thead>

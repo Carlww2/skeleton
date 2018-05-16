@@ -8,7 +8,7 @@
 					<label for="checkboxParent"></label>
 				</div>
 			</th>
-			<th>Imagen</th>
+			<th>@lang('panel.banner.image')</th>
 			<th>@lang('status')</th>
 			<th>@lang('actions')</th>
 		</thead>
