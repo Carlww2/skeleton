@@ -59,9 +59,9 @@
 							<img src="{{asset(auth()->user()->photo)}}" alt="..." class="img-circle" width="35%" id="foto_perfil">
 						</div>
 						<div class="form-group col-md-7">
-							{{Form::label('photo', 'Foto de perfil', ['class' => !auth()->user()->photo?'label-control required':'label-control'])}}
+							{{Form::label('photo', __('panel.users.profile-picture'), ['class' => !auth()->user()->photo?'label-control required':'label-control'])}}
 							{{Form::hidden('base64', null, ['class' => 'form-control'])}}
-							{{Form::file('photo', ['class' =>!auth()->user()->photo?'form-control not-empty file image':'form-control', 'data-name' => 'Foto'])}}
+							{{Form::file('photo', ['class' =>!auth()->user()->photo?'form-control not-empty file image':'form-control', 'data-name' => __('panel.users.profile-picture')])}}
 						</div>
 					</div>
 				{{ Form::close() }}
@@ -183,11 +183,11 @@
 				</li>
 				<li class="{{ in_array(Route::currentRouteName(), ['User.index1', 'User.index2', 'User.form'] ) ? 'active' : '' }}">
 					<a href="#!">
-						<i class="fa fa-users"></i> <span class="title">Usuarios</span> <span class="selected"></span> <span class="arrow"></span>
+						<i class="fa fa-users"></i> <span class="title">@lang('panel.users')</span> <span class="selected"></span> <span class="arrow"></span>
 					</a>
 					<ul class="sub-menu">
-						<li class="{{ ( in_array(Route::currentRouteName(), ['User.index1', 'User.form']) ) ? 'active' : '' }}"> <a href="{{route('User.index1')}}"> Sistema </a> </li>
-						<li class="{{ ( Route::currentRouteName() == 'User.index2' ) ? 'active' : '' }}"> <a href="{{route('User.index2')}}"> Aplicación</a> </li>
+						<li class="{{ ( in_array(Route::currentRouteName(), ['User.index1', 'User.form']) ) ? 'active' : '' }}"> <a href="{{route('User.index1')}}"> @lang('panel.system') </a> </li>
+						<li class="{{ ( Route::currentRouteName() == 'User.index2' ) ? 'active' : '' }}"> <a href="{{route('User.index2')}}"> @lang('panel.app')</a> </li>
 					</ul>
 				</li>
 				<li class="start {{ ( Route::currentRouteName()== 'Company' ) ? 'active' : '' }}">
@@ -200,7 +200,7 @@
 					<a href="{{route('Banner')}}"> <i class="fa fa-image"></i> <span class="title">@lang('panel.banners')</span> <span class="selected"></span></a>
 				</li>
 				<li class="start {{ ( in_array(Route::currentRouteName(),['Faq', 'Faq.form']) ) ? 'active open' : '' }}">
-					<a href="{{route('Faq')}}"> <i class="fa fa-question-circle"></i> <span class="title">Faqs</span> <span class="selected"></span></a>
+					<a href="{{route('Faq')}}"> <i class="fa fa-question-circle"></i> <span class="title">@lang('panel.faqs')</span> <span class="selected"></span></a>
 				</li>
 			</ul>
 			<div class="clearfix"></div>
@@ -272,6 +272,7 @@
 <script src="{{ asset('/js/datatables.js') }}"></script>
 
 <!-- JS PROPIOS -->
+<script src="{{asset('/js/lang/'.app()->getLocale().'.js')}}" type="text/javascript"></script>
 <script src="{{asset('/js/script.js')}}" type="text/javascript"></script>
 <script src="{{asset('/js/plugins/sweetalert.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('/js/plugins/croppie.min.js')}}" type="text/javascript"></script>

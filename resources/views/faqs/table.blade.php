@@ -8,7 +8,7 @@
 					<label for="checkboxParent"></label>
 				</div>
 			</th>
-			<th>Pregunta</th>
+			<th>@lang('panel.faqs.question')</th>
 			<th>@lang('status')</th>
 			<th>@lang('actions')</th>
 		</thead>
@@ -25,14 +25,14 @@
 					<td>{{$faq->question}}</td>
 					<td>
 						@if($faq->status)
-						<span class="label label-success status" data-url="{{route('Faq.status')}}" data-id="{{$faq->id}}" data-toggle="tooltip" data-placement="top" title="Cambiar status">@lang('panel.active')</span>
+						<span class="label label-success status" data-url="{{route('Faq.status')}}" data-id="{{$faq->id}}" data-toggle="tooltip" data-placement="top" title="{{__('panel.status')}}">@lang('panel.active')</span>
 						@else
-						<span class="label label-danger status" data-url="{{route('Faq.status')}}" data-id="{{$faq->id}}" data-toggle="tooltip" data-placement="top"title="Cambiar status">@lang('panel.inactive')</span>
+						<span class="label label-danger status" data-url="{{route('Faq.status')}}" data-id="{{$faq->id}}" data-toggle="tooltip" data-placement="top" title="{{__('panel.status')}}">@lang('panel.inactive')</span>
 						@endif
 					</td>
 					<td>
-						<a class="btn btn-xs btn-mini btn-primary" href="{{route('Faq.form', $faq->id)}}" data-toggle="tooltip" data-placement="top" title="Editar"><i class="fa fa-pencil"></i></a>
-						<a href="{{route('Faq.destroy', $faq->id)}}" class="btn btn-xs btn-mini btn-danger delete_row" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="fa fa-trash"></i></a>
+						<a class="btn btn-xs btn-mini btn-primary" href="{{route('Faq.form', $faq->id)}}" data-toggle="tooltip" data-placement="top" title="{{__('panel.edit')}}"><i class="fa fa-pencil"></i></a>
+						<a href="{{route('Faq.destroy', $faq->id)}}" class="btn btn-xs btn-mini btn-danger delete_row" data-toggle="tooltip" data-placement="top" title="{{__('panel.delete')}}"><i class="fa fa-trash"></i></a>
 					</td>
 				</tr>
 			@endforeach

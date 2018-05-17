@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('pageTitle', 'Noticias')
+@section('pageTitle', __('panel.news'))
 @section('content')
 <div class="container-fluid content-body">
 	@if(session('msg'))

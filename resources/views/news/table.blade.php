@@ -25,14 +25,14 @@
 					<td>{{$new->title}}</td>
 					<td>
 						@if($new->status)
-						<span class="label label-success status" data-url="{{route('News.status')}}" data-id="{{$new->id}}" data-toggle="tooltip" data-placement="top" title="Cambiar status">@lang('panel.active')</span>
+						<span class="label label-success status" data-url="{{route('News.status')}}" data-id="{{$new->id}}" data-toggle="tooltip" data-placement="top" title="{{__('panel.status')}}">@lang('panel.active')</span>
 						@else
-						<span class="label label-danger status" data-url="{{route('News.status')}}" data-id="{{$new->id}}" data-toggle="tooltip" data-placement="top"title="Cambiar status">@lang('panel.inactive')</span>
+						<span class="label label-danger status" data-url="{{route('News.status')}}" data-id="{{$new->id}}" data-toggle="tooltip" data-placement="top" title="{{__('panel.status')}}">@lang('panel.inactive')</span>
 						@endif
 					</td>
 					<td>
-						<a class="btn btn-xs btn-mini btn-primary" href="{{route('News.form', $new->id)}}" data-toggle="tooltip" data-placement="top" title="Editar"><i class="fa fa-pencil"></i></a>
-						<a href="{{route('News.destroy',$new->id) }}" class="btn btn-xs btn-mini btn-danger delete_row" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="fa fa-trash"></i></a>
+						<a class="btn btn-xs btn-mini btn-primary" href="{{route('News.form', $new->id)}}" data-toggle="tooltip" data-placement="top" title="{{__('panel.edit')}}"><i class="fa fa-pencil"></i></a>
+						<a href="{{route('News.destroy',$new->id) }}" class="btn btn-xs btn-mini btn-danger delete_row" data-toggle="tooltip" data-placement="top" title="{{__('panel.delete')}}"><i class="fa fa-trash"></i></a>
 					</td>
 				</tr>
 			@endforeach

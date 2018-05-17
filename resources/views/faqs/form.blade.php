@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('pageTitle', 'Faqs')
+@section('pageTitle', __('panel.faqs'))
 @section('content')
 <div class="container-fluid content-body">
 	@if(session('msg'))
@@ -8,7 +8,7 @@
 	</div>
 	@endif
 	<div class="page-title">
-		<h1>{{$faq->id ?  __('panel.update') : __('panel.create')}} <span class="semi-bold">Pregunta frecuente</span></h1>
+		<h1>{{$faq->id ?  __('panel.update') : __('panel.create')}} <span class="semi-bold">@lang('panel.faq')</span></h1>
 	</div>
 	<div class="row-fluid">
 	{{ Form::model($faq, ['route' => !$faq->id?['Faq.store']:['Faq.update', $faq->id], 'class' => 'form valid', 'id' => 'faqsForm' ,'autocomplete' => 'off']) }}
@@ -17,15 +17,15 @@
 			@endif
 			<div class="row">
 				<div class="form-group col-md-12 {{$errors->faq->first('question')?'has-error':''}}">
-					{{Form::label('question', 'Título', ['class' => 'control-label  required'])}}
-					{{Form::text('question', null, ['class' => 'form-control not-empty', 'data-name' => 'Título'])}}
+					{{Form::label('question', __('panel.faqs.question'), ['class' => 'control-label  required'])}}
+					{{Form::text('question', null, ['class' => 'form-control not-empty', 'data-name' => __('panel.faqs.question')])}}
 					{{@$errors->faq->first('question')}}
 				</div>
 			</div>
 			<div class="row">
 				<div class="form-group col-md-12 {{$errors->faq->first('answer')?'has-error':''}}">
-					{{Form::label('answer', 'Respuesta', ['class' => !$faq->id?'label-control required':'label-control'])}}
-					{{Form::textarea ('answer', null, ['class' => 'form-control not-empty', 'data-name' => 'Respuesta'])}}
+					{{Form::label('answer', __('panel.faqs.answer'), ['class' => !$faq->id?'label-control required':'label-control'])}}
+					{{Form::textarea ('answer', null, ['class' => 'form-control not-empty', 'data-name' => __('panel.faqs.answer')])}}
 				</div>
 			</div>
 			<div class="row buttons-form">

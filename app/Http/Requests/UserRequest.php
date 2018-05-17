@@ -45,7 +45,7 @@ class UserRequest extends FormRequest
 						'fullname'  => 'required|regex:/^[\pL\s]+$/u|min:3',
 						'phone' => 'required|numeric|unique:users',
 						'email' => 'required|email|unique:users',
-						'password' => 'required|min:8',
+						'password' => 'nullable|min:8',
 					];
 				}
 			case 'PUT':
@@ -53,14 +53,14 @@ class UserRequest extends FormRequest
 					return [
 						'fullname' => 'required|regex:/^[\pL\s]+$/u|min:3',
 						'email' => 'required|email|unique:users,email, '.$this->route('id'),
-						'password' => 'sometimes|min:8',
+						'password' => 'nullable|min:8',
 					];
 				} else {
 					return [
 						'fullname' => 'required|regex:/^[\pL\s]+$/u|min:3',
 						'phone' => 'required|numeric|unique:users,phone, '.$this->route('id'),
 						'email' => 'required|email|unique:users,email, '.$this->route('id'),
-						'password' => 'sometimes|min:8',
+						'password' => 'nullable|min:8',
 					];
 				}
 			default:break;

@@ -10,10 +10,17 @@ return [
 	'status' => 'Estatus',
 	'actions' => 'Acciones',
 	'create' => 'Crear',
+	'edit' => 'Editar',
 	'update' => 'Actualizar',
+	'delete' => 'Eliminar',
+	'status' => 'Cambiar estado',
 	'list' => 'Listado :Item',
 	'new' => 'Nuevo :Item',
 	'multiple-delete' => 'Eliminar múltiple',
+	'created_at' => 'Created at',
+	'updated_at' => 'Updated at',
+	'system' => 'Sistema',
+	'app' => 'Aplicación',
 	#main
 	'welcome' => 'Bienvenido',
 	'picture.profile' => 'Cambiar foto de perfil',
@@ -38,4 +45,20 @@ return [
 	'news.content' => 'Contenido',
 	'news.photo' => 'Foto'
 	#faqs
+	'faqs' => 'Preguntas frecuentes',
+	'faq' => 'Pregunta frecuente',
+	'faqs.question' => 'Pregunta',
+	'faqs.answer' => 'Respuesta',
+	#users
+	'users' => 'Usuarios',
+	'user' => 'Usuario',
+	'User.name' => 'Nombre',
+	'User.lastname' => 'Apellido',
+	'User.fullname' => 'Nombre completo',
+	'User.email' => 'Correo electrónico',
+	'User.password' => 'Contraseña',
+	'User.phone' => 'Teléfono',
+	'User.address' => 'Dirección',
+	'User.role' => 'Rol',
+	'User.profile-picture' => 'Foto de perfíl',
 ];

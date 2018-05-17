@@ -4,7 +4,7 @@ $(function(){
 	$("select.select2").select2();
 	$("#s2id_byUser").addClass('col-md-12').css('padding','0')
 	$("#start_date").datepicker({
-		language: 'es',
+		language: lang.language,
 		autoclose: true,
 		todayHighlight: true,
 		format: "dd M yyyy",
@@ -14,7 +14,7 @@ $(function(){
 	});
 
 	$("#end_date").datepicker({
-		language: 'es',
+		language: lang.language,
 		autoclose: true,
 		todayHighlight: true,
 		format: "dd M yyyy",
@@ -28,7 +28,7 @@ $(function(){
 	});
 
 	$(".input-date").datepicker({
-		language: 'es',
+		language: lang.language,
 		autoclose: true,
 		todayHighlight: true,
 		format: "dd M yyyy",
@@ -87,9 +87,9 @@ $(".logout").on('click',function(e){
 	var ele = $(this);
 	e.preventDefault()
 	swal({
-		title: '¿Quieres cerrar sesión?',
+		title: lang.q_exit,
 		icon: "warning",
-		buttons: ["Cancelar", "Salir"],
+		buttons: [lang.cancel, lang.exit],
 		dangerMode: true,
 	}).then((accept) => {
 		if (accept) {
@@ -103,9 +103,9 @@ $(document).delegate('.delete_row','click',function(e){
 	var ele = $(this);
 	e.preventDefault()
 	swal({
-		title: '¿Quieres eliminar este registro?',
+		title: lang.q_delete,
 		icon: "warning",
-		buttons: ["Cancelar", "Eliminar"],
+		buttons: [lang.cancel, lang.delete],
 		dangerMode: true,
 	}).then((accept) => {
 		if (accept) {
@@ -114,12 +114,12 @@ $(document).delegate('.delete_row','click',function(e){
 				method: "DELETE",
 				type: "DELETE",
 				beforeSend:function(){
-					loadAnimation('Eliminando')
+					loadAnimation(lang.deleting)
 				},
 				success:function(response){
 					if (response.delete == "true"){
 						swal({
-							title: 'Registro eliminado exitosamente',
+							title: lang.s_delete,
 							icon: 'success',
 						}).then((accept) => {
 							if (accept) {
@@ -128,9 +128,9 @@ $(document).delegate('.delete_row','click',function(e){
 						})
 					} else {
 						if ( response.delete == "occupied" ) {
-							swal("Error","Este registro esta siendo usado, cambie la categoria que esta asignada ene esta ciudad","error")
+							swal(lang.error,"Este registro esta siendo usado, elimine los registros relacionados","error")
 						} else {
-							swal("Ha ocurrido un error","","error")
+							swal(lang.wrong,"","error")
 						}
 					}
 				}
@@ -142,14 +142,14 @@ $(document).delegate('.delete_row','click',function(e){
 $(document).delegate("span.label.status",'click',function(e){
 	e.preventDefault()
 	var ele = $(this);
-	var status = ele.hasClass(':label-success')?"activar":"desactivar";
+	var status = ele.hasClass('label-success')?lang.deactivate:lang.activate;
 	var url = ele.data('url');
 	var id = ele.data('id');
 
 	swal({
-		title: '¿Quieres '+status+' este registro?',
+		title: passValToString(lang.q_status, status),
 		icon: 'warning',
-		buttons:["Cancelar", "Aceptar"],
+		buttons:[lang.cancel, lang.accept],
 		dangerMode: false,
 	}).then((accept) => {
 		if (accept){
@@ -164,14 +164,14 @@ $(document).delegate("span.label.status",'click',function(e){
 				},
 				success:function(response){
 					if (response.status){
-						swal("Se ha modificado el estatus","","success");
+						swal(lang.s_status,"","success");
 						if ( ele.hasClass('label-success') ){
-							ele.removeClass("label-success").addClass("label-danger").text("Inactivo");
+							ele.removeClass("label-success").addClass("label-danger").text(lang.inactive);
 						} else{
-							ele.removeClass("label-danger").addClass("label-success").text("Activo");
+							ele.removeClass("label-danger").addClass("label-success").text(lang.active);
 						}
 					} else {
-						swal("Ha ocurrido un error","","error");
+						swal(lang.wrong,"","error");
 					}
 				}
 			})
@@ -217,9 +217,9 @@ $('.multiple-delete-btn').on('click', function(e){
 		ids.push($(this).val());
 	})
 	swal({
-		title: 'Se eliminarán '+ids.length+' registro(s), ¿Estás seguro?',
+		title: passValToString(lang.q_mul_delete, ids.length),
 		icon: 'warning',
-		buttons:["Cancelar", "Aceptar"],
+		buttons:[lang.cancel, lang.accept],
 		dangerMode: true,
 	}).then((accept) => {
 		if (accept){
@@ -230,12 +230,12 @@ $('.multiple-delete-btn').on('click', function(e){
 					ids: ids
 				},
 				beforeSend:function(){
-					loadAnimation('Eliminando');
+					loadAnimation(lang.deleting);
 				},
 				success:function(response){
 					if (response.delete == "true"){
 						swal({
-							title: 'Registro eliminado exitosamente',
+							title: lang.s_delete,
 							icon: 'success',
 						}).then((accept) => {
 							if (accept) {
@@ -245,9 +245,9 @@ $('.multiple-delete-btn').on('click', function(e){
 						})
 					} else {
 						if ( response.delete == "occupied" ) {
-							swal("Error","Este registro esta siendo usado, cambie la categoria que esta asignada ene esta ciudad","error")
+							swal(lang.error,"Este registro esta siendo usado, elimine los registros relacionados","error")
 						} else {
-							swal("Ha ocurrido un error","","error")
+							swal(lang.wrong,"","error")
 						}
 					}
 				}
@@ -351,10 +351,10 @@ $("#exportar").on('click',function(){
 $(document).delegate(".change_status",'click',function(e){
 	e.preventDefault()
 	var ele = $(this);
-	var status = ele.is(':checked')?"marcar":"desmarcar";
+	var status = ele.is(':checked')?lang.check:lang.uncheck;
 
 	swal({
-		title: '¿Quieres '+status+' este registro?',
+		title: passValToString(lang.q_check, status),
 		icon: 'warning',
 		buttons:true
 	}).then((accept) => {
@@ -365,7 +365,7 @@ $(document).delegate(".change_status",'click',function(e){
 				success:function(response){
 					if (response.status){
 						swal({
-							title: 'Registro cambiado exitosamente',
+							title: lang.s_check,
 							type: 'success',
 							showCancelButton: false,
 							confirmButtonColor: '#3085d6',
@@ -381,7 +381,7 @@ $(document).delegate(".change_status",'click',function(e){
 							checkProgress();
 						})
 					} else {
-						swal("Ha ocurrido un error","","error")
+						swal(lang.wrong,"","error")
 					}
 				}
 			})
@@ -403,7 +403,7 @@ function refreshTable(url){
 
 function loadAnimation(title = null){
 	if ( !title ){
-		title = 'Guardando';
+		title = lang.saving;
 	}
 	swal({
 		title: title,
@@ -456,31 +456,38 @@ function checkProgress(){
 }
 
 function createTable(){
-	$(".datatable").dataTable({
-		"aaSorting": [[ 0, "desc" ]],
-		"oLanguage": {
-			"sProcessing":     "Procesando...",
-			"sLengthMenu":     "_MENU_",
-			"sZeroRecords":    "No se encontraron resultados",
-			"sEmptyTable":     "Ningún registro disponible en esta tabla",
-			"sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-			"sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
-			"sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
-			"sInfoPostFix":    "",
-			"sSearch":         "Buscar:",
-			"sUrl":            "",
-			"sInfoThousands":  ",",
-			"sLoadingRecords": "Cargando...",
-			"oPaginate": {
-				"sFirst":    "Primero",
-				"sLast":     "Último",
-				"sNext":     "Siguiente",
-				"sPrevious": "Anterior"
-			},
-			"oAria": {
-				"sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
-				"sSortDescending": ": Activar para ordenar la columna de manera descendente"
+	if ( lang.language == 'es' ){
+		$(".datatable").dataTable({
+			"aaSorting": [[ 0, "desc" ]],
+			"oLanguage": {
+				"sProcessing":     "Procesando...",
+				"sLengthMenu":     "_MENU_",
+				"sZeroRecords":    "No se encontraron resultados",
+				"sEmptyTable":     "Ningún registro disponible en esta tabla",
+				"sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+				"sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+				"sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+				"sInfoPostFix":    "",
+				"sSearch":         "Buscar:",
+				"sUrl":            "",
+				"sInfoThousands":  ",",
+				"sLoadingRecords": "Cargando...",
+				"oPaginate": {
+					"sFirst":    "Primero",
+					"sLast":     "Último",
+					"sNext":     "Siguiente",
+					"sPrevious": "Anterior"
+				},
+				"oAria": {
+					"sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+					"sSortDescending": ": Activar para ordenar la columna de manera descendente"
+				}
 			}
-		}
-	});
+		});
+	} else {
+		$(".datatable").dataTable({
+			"aaSorting": [[ 0, "desc" ]],
+		});
+	}
+
 }

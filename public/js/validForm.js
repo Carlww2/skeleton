@@ -1,7 +1,7 @@
 /*
 * Script de validaciones de un formulario
 * Luis Castañeda
-* v 2.7.3
+* v 2.8
 *
 * not-empty: El input no puede estar vacio
 * file: El input es de tipo file
@@ -156,7 +156,7 @@ $(".length").each(function(){
 		selector = "/";
 		reach = $(this).data('equal')
 	}
-	$(this).before("<span class='display-counter'><span class='counter'>0</span>"+selector+reach+" caracteres</span>")
+	$(this).before("<span class='display-counter'><span class='counter'>0</span>"+selector+reach+" "+lang.char+"</span>")
 })
 
 $(".value").each(function(){
@@ -192,14 +192,14 @@ $(".guardar").on('click',function(e){
 				if ( !$(this).is(':checked') ){
 					$(this).parent().addClass('has-error')
 					errors_count += 1;
-					msg = msg +"<li>"+$(this).data('name')+": Campo vacio</li>";
+					msg = msg +"<li>"+$(this).data('name')+": "+lang.empty_field+"</li>";
 				}
 			}
 
 			if ( !$(this).val() || $(this).val() == 0 || $(this).select2('val') == 0 ){
 				$(this).parent().addClass('has-error')
 				errors_count += 1;
-				msg = msg +"<li>"+$(this).data('name')+": Campo vacio</li>";
+				msg = msg +"<li>"+$(this).data('name')+": "+lang.empty_field+"</li>";
 			} else {
 				$(this).parent().removeClass('has-error')
 			}
@@ -213,7 +213,7 @@ $(".guardar").on('click',function(e){
 							$(this).parent().removeClass('has-error')
 						} else {
 							errors_count += 1;
-							msg = msg +"<li>"+$(this).data('name')+": Mínimo de "+$(this).data('min')+" caracteres</li>";
+							msg = msg +"<li>"+$(this).data('name')+": "+passValToString(lang.min_char, $(this).data('min'))+"</li>";
 							$(this).parent().addClass('has-error')
 						}
 					}
@@ -224,7 +224,7 @@ $(".guardar").on('click',function(e){
 							$(this).parent().removeClass('has-error')
 						} else {
 							errors_count += 1;
-							msg = msg +"<li>"+$(this).data('name')+": Máximo de "+$(this).data('max')+" caracteres</li>";
+							msg = msg +"<li>"+$(this).data('name')+": "+passValToString(lang.max_char, $(this).data('max'))+"</li>";
 							$(this).parent().addClass('has-error')
 						}
 					}
@@ -235,7 +235,7 @@ $(".guardar").on('click',function(e){
 							$(this).parent().removeClass('has-error')
 						} else {
 							errors_count += 1;
-							msg = msg +"<li>"+$(this).data('name')+": Total de "+$(this).data('equal')+" caracteres</li>";
+							msg = msg +"<li>"+$(this).data('name')+": "+passValToString(lang.equal_char, $(this).data('equal'))+"</li>";
 							$(this).parent().addClass('has-error')
 						}
 					}
@@ -250,7 +250,7 @@ $(".guardar").on('click',function(e){
 						$(this).parent().removeClass('has-error')
 					} else {
 						errors_count += 1;
-						msg = msg +"<li>"+$(this).data('name')+": Valor mínimo posible "+$(this).data('min')+"</li>";
+						msg = msg +"<li>"+$(this).data('name')+": "+passValToString(lang.val_min, $(this).data('min'))+"</li>";
 						$(this).parent().addClass('has-error')
 					}
 				}
@@ -261,7 +261,7 @@ $(".guardar").on('click',function(e){
 						$(this).parent().removeClass('has-error')
 					} else {
 						errors_count += 1;
-						msg = msg +"<li>"+$(this).data('name')+": Valor máximo posible "+$(this).data('max')+" caracteres</li>";
+						msg = msg +"<li>"+$(this).data('name')+": "+passValToString(lang.val_max, $(this).data('max'))+"</li>";
 						$(this).parent().addClass('has-error')
 					}
 				}
@@ -273,7 +273,7 @@ $(".guardar").on('click',function(e){
 				if ( !$(this).parent().hasClass("has-error") ){
 					$(this).parent().addClass('has-error')
 					errors_count += 1;
-					msg = msg +"<li>"+$(this).data('name')+": Correo inválido</li>";
+					msg = msg +"<li>"+$(this).data('name')+": "+lang.invalid_email+"</li>";
 				}
 			}
 		}
@@ -283,7 +283,7 @@ $(".guardar").on('click',function(e){
 				if ( !$(this).parent().hasClass("has-error") ){
 					$(this).parent().addClass('has-error')
 					errors_count += 1;
-					msg = msg +"<li>"+$(this).data('name')+": Valor entero o decimal requerido</li>";
+					msg = msg +"<li>"+$(this).data('name')+": "+lang.integer_decimal+"</li>";
 				}
 			} else {
 				$(this).parent().removeClass('has-error')
@@ -319,9 +319,9 @@ $(".guardar").on('click',function(e){
 					if ($.inArray(extension, allowedExtensions) == -1 || mb > max_mb) {
 						if ( !$(this).parent().hasClass("has-error") ){
 							if ( $.inArray(extension, allowedExtensions) == -1 ) {
-								type_error = "Extensiones permitidas: "+allowedExtensions;
+								type_error = passValToString(lang.allowed_ext, allowedExtensions);
 							} else {
-								type_error = "El arhivo debe ser menor a "+max_mb+" mb";
+								type_error = passValToString(lang.max_size, max_mb);
 							}
 							$(this).parent().addClass("has-error");
 							errors_count += 1;
@@ -335,9 +335,9 @@ $(".guardar").on('click',function(e){
 		}
 	})
 
-	if ( errors_count > 0 ) {
+	if ( errors_count ) {
 		swal({
-			title: 'Verifique los siguientes campos: ',
+			title: lang.verify_fields,
 			icon: 'error',
 			content: {
 				element: "div",
@@ -363,7 +363,7 @@ $(".guardar").on('click',function(e){
 						refreshTable(window.location.href);
 						$('.modal').modal('hide')
 					} else {
-						swal("Error al guardar","","error");
+						swal(lang.error_save,"","error");
 						btn.prop('disabled',false).removeClass('disabled');
 					}
 				},

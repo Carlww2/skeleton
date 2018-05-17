@@ -3,25 +3,30 @@
 return [
 	#Common words
 	'save' => "Save",
-	'return' => "Return",
+	'return' => "Back",
 	'cancel' => "Cancel",
 	'active' => "Active",
 	'inactive' => 'Inactive',
 	'status' => 'Status',
 	'actions' => 'Actions',
 	'create' => 'Create',
+	'edit' => 'Edit',
 	'update' => 'Update',
+	'delete' => 'Delete',
+	'status' => 'Change status',
 	'list' => ':Item list',
 	'new-button' => 'New :Item',
 	'multiple-delete' => 'Multiple delete',
 	'created_at' => 'Created at',
 	'updated_at' => 'Updated at',
-	#main.blade.php
+	'system' => 'System',
+	'app' => 'Application',
+	#main
 	'welcome' => 'Welcome',
 	'picture.profile' => 'Change profile picture',
 	'update.profile.picture' => 'Update profile picture',
 	'log-out' => 'Log out',
-	#company.blade.php
+	#company
 	'company' => 'Enterprise',
 	'company.name' => "Name",
 	'company.description' => "Description",
@@ -38,6 +43,22 @@ return [
 	'new' => 'News item',
 	'news.title' => 'Title',
 	'news.content' => 'Content',
-	'news.photo' => 'Photo'
+	'news.photo' => 'Photo',
 	#faqs
+	'faqs' => 'Faqs',
+	'faq' => 'Faq',
+	'faqs.question' => 'Question',
+	'faqs.answer' => 'Answer',
+	#users
+	'users' => 'Users',
+	'user' => 'System user',
+	'users.name' => 'Name',
+	'users.lastname' => 'Lastname',
+	'users.fullname' => 'Fullname',
+	'users.email' => 'Email',
+	'users.password' => 'Password',
+	'users.phone' => 'Phone',
+	'users.address' => 'Address',
+	'users.role' => 'Role',
+	'users.profile-picture' => 'Profile picture',
 ];
