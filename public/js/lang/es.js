@@ -16,7 +16,7 @@ var lang = {
 	'saving': "Guardando",
 	'loading': "Cargando",
 	'deleting': "Eliminando",
-	'activete': "Activar",
+	'activate': "Activar",
 	'deactivate': "Desactivar",
 	'active': "Activo",
 	'inactive': "Inactivo",
