@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use App\Http\Requests\FaqRequest;
 use App\Models\Faq;
-use redirect;
 
 class FaqsController extends Controller
 {
@@ -31,9 +30,9 @@ class FaqsController extends Controller
 		$faq->fill($req->all());
 
 		if ( $faq->save() ){
-			return redirect()->route('Faq')->with('msg', 'Faq creada');
+			return redirect()->route('Faq')->with('msg', __('panel.s-create-item', ['item' => __('panel.faq')]));
 		} else {
-			return redirect()->back()->with('msg', 'Error al crear faq');
+			return redirect()->back()->with('msg', __('panel.e-create-item', ['item' => __('panel.faq')]));
 		}
 	}
 
@@ -42,9 +41,9 @@ class FaqsController extends Controller
 		$faq->fill($req->all());
 
 		if ( $faq->save() ){
-			return redirect()->route('Faq')->with('msg', 'Faq actualizada');
+			return redirect()->route('Faq')->with('msg', __('panel.s-update-item', ['item' => __('panel.faq')]));
 		} else {
-			return redirect()->back()->with('msg', 'Error al actualizar faq');
+			return redirect()->back()->with('msg', __('panel.e-update-item', ['item' => __('panel.faq')]));
 		}
 	}
 

@@ -22,6 +22,7 @@ var lang = {
 	'inactive': "Inactive",
 	'check': "Check",
 	'uncheck': "Uncheck",
+	'logging_out': "Logging out",
 	'q_exit': "Do you want to log out?",
 	'q_status': "%var this item?",
 	'q_check': "¿%var this item?",

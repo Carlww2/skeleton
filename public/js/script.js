@@ -93,7 +93,7 @@ $(".logout").on('click',function(e){
 		dangerMode: true,
 	}).then((accept) => {
 		if (accept) {
-			loadAnimation('Cerrando sesión');
+			loadAnimation(lang.logging_out);
 			$(".logout-form").submit();
 		}
 	}).catch(swal.noop)

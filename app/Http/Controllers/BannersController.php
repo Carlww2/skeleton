@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Http\Requests\BannerRequest;
 use Illuminate\Support\Facades\File;
 use App\Models\Banner;
-use Redirect;
 use Image;
 
 class BannersController extends Controller
@@ -57,9 +56,9 @@ class BannersController extends Controller
 			$path = public_path()."/img/banners/".$banner->id."/".$banner->image;
 			Image::make($image)->save($path);
 
-			return Redirect()->route('Banner')->with('msg', 'Banner creado');
+			return Redirect()->route('Banner')->with('msg',  __('panel.s-create-item', ['item' => __('panel.banner')]));
 		} else {
-			return Redirect()->back()->with('msg', 'Error al crear banner');
+			return Redirect()->back()->with('msg', __('panel.e-create-item', ['item' => __('panel.banner')]));
 		}
 	}
 
@@ -84,9 +83,9 @@ class BannersController extends Controller
 		}
 
 		if ( $banner->save() ){
-			return Redirect()->route('Banner')->with('msg', 'Banner actualizado');
+			return Redirect()->route('Banner')->with('msg', __('panel.s-update-item', ['item' => __('panel.banner')]));
 		} else {
-			return Redirect()->back()->with('msg', 'Error al actualizar banner');
+			return Redirect()->back()->with('msg', __('panel.e-update-item', ['item' => __('panel.banner')]));
 		}
 	}
 

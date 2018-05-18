@@ -21,6 +21,11 @@ return [
 	'updated_at' => 'Updated at',
 	'system' => 'Sistema',
 	'app' => 'Aplicación',
+	's-create-item' => 'Alta de :item exitoso',
+	'e-create-item' => 'Error en alta de :item',
+	's-update-item' => 'Edición de :item exitoso',
+	'e-update-item' => 'Error en edición de :item',
+	'e-send-email' => 'Ocurrio un problema en el envío de correo',
 	#main
 	'welcome' => 'Bienvenido',
 	'picture.profile' => 'Cambiar foto de perfil',

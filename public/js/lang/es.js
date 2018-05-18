@@ -22,6 +22,7 @@ var lang = {
 	'inactive': "Inactivo",
 	'check': "Marcar",
 	'uncheck': "Desmarcar",
+	'logging_out': "Cerrando sesión",
 	'q_exit': "¿Quieres cerrar sesión?",
 	'q_status': "¿%var este registro?",
 	'q_check': "¿%var este registro?",

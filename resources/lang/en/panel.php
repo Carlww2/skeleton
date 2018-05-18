@@ -21,6 +21,11 @@ return [
 	'updated_at' => 'Updated at',
 	'system' => 'System',
 	'app' => 'Application',
+	's-create-item' => ':item created successfully',
+	'e-create-item' => 'An error has ocurried creating :item',
+	's-update-item' => ':item updated successfully',
+	'e-update-item' => 'An error has ocurried updating :item',
+	'e-send-email' => 'An error has ocurried tryiing to send an email',
 	#main
 	'welcome' => 'Welcome',
 	'picture.profile' => 'Change profile picture',

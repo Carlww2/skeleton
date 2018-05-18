@@ -74,12 +74,12 @@ class UsersController extends Controller
 			$params['view'] = 'mails.credentials';
 
 			if ( $this->mail($params) ){
-				return redirect()->route('User.index1')->with(['msg' => 'Administrdor creado', 'class' => 'alert-success']);
+				return redirect()->route('User.index1')->with(['msg' =>  __('panel.s-create-item', ['item' => __('panel.user')]), 'class' => 'alert-success']);
 			}
-			return redirect()->route('User.index1')->with([ 'msg' => 'Administrador creado, ocurrió un problema al enviar el correo', 'class' => 'alert-warning' ]);
+			return redirect()->route('User.index1')->with([ 'msg' => __('panel.s-create-item', ['item' => __('panel.user')]).' '.__('panel.e-send-email'), 'class' => 'alert-warning' ]);
 
 		} else {
-			return back()->with([ 'msg' => 'Error al crear el usuario', 'class' => 'alert-danger' ]);
+			return back()->with([ 'msg' => __('panel.e-create-item', ['item' => __('panel.user')]), 'class' => 'alert-danger' ]);
 		}
 	}
 
@@ -111,13 +111,13 @@ class UsersController extends Controller
 				$params['view'] = 'mails.credentials';
 
 				if ( $this->mail($params) ){
-					return redirect()->route('User.index1')->with(['msg' => 'Administrador actualizado', 'class' => 'alert-success']);
+					return redirect()->route('User.index1')->with(['msg' => __('panel.s-update-item', ['item' => __('panel.user')]).' '.__('panel.e-send-email'), 'class' => 'alert-success']);
 				}
-				return redirect()->route('User.index1')->with([ 'msg' => 'Administrador actualizado, ocurrió un problema al enviar el correo', 'class' => 'alert-warning' ]);
+				return redirect()->route('User.index1')->with([ 'msg' => __('panel.s-update-item', ['item' => __('panel.user')]), 'class' => 'alert-warning' ]);
 			}
-			return redirect()->route('User.index1')->with(['msg' => 'Administrador actualizado', 'class' => 'alert-success']);
+			return redirect()->route('User.index1')->with(['msg' => __('panel.s-update-item', ['item' => __('panel.user')]), 'class' => 'alert-success']);
 		} else {
-			return back()->with([ 'msg' => 'Error al actualizar usuario', 'class' => 'alert-danger' ]);
+			return back()->with([ 'msg' => __('panel.e-update-item', ['item' => __('panel.user')]), 'class' => 'alert-danger' ]);
 		}
 	}
 

@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Http\Requests\NewRequest;
 use Illuminate\Support\Facades\File;
 use App\Models\News;
-use Redirect;
 use Image;
 
 class NewsController extends Controller
@@ -39,11 +38,11 @@ class NewsController extends Controller
 		if ( $new->save() ){
 			File::makeDirectory(public_path()."/img/news/".$new->id, 0777, true, true);
 			$path = public_path()."/img/news/".$new->id."/".$new->photo;
-			Image::make($photo)->fit(261,213)->save($path);
+			Image::make($photo)->save($path);
 
-			return Redirect()->route('News')->with('msg', 'Noticia creada');
+			return Redirect()->route('News')->with('msg', __('panel.s-create-item', ['item' => __('panel.new')]));
 		} else {
-			return Redirect()->back()->with('msg', 'Error al crear noticia');
+			return Redirect()->back()->with('msg', __('panel.e-create-item', ['item' => __('panel.new')]));
 		}
 	}
 
@@ -58,13 +57,13 @@ class NewsController extends Controller
 			File::cleanDirectory(public_path()."/img/news/".$new->id."/");
 			$new->photo = time().'.'.$photo->getClientOriginalExtension();
 			$path = public_path()."/img/news/".$new->id."/".$new->photo;
-			Image::make($photo)->fit(261,213)->save($path);
+			Image::make($photo)->save($path);
 		}
 
 		if ( $new->save() ){
-			return Redirect()->route('News')->with('msg', 'Noticia actualizada');
+			return Redirect()->route('News')->with('msg', __('panel.s-update-item', ['item' => __('panel.new')]));
 		} else {
-			return Redirect()->back()->with('msg', 'Error al actualizar noticia');
+			return Redirect()->back()->with('msg', __('panel.e-update-item', ['item' => __('panel.new')]));
 		}
 	}
 
