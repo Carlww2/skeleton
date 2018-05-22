@@ -41,34 +41,6 @@ class FaqRequest extends FormRequest
 		}
 	}
 
-	/**
-	* Get the error messages for the defined validation rules.
-	*
-	* @return array
-	*/
-	public function messages()
-	{
-		return [
-			'question.required' => 'La pregunta es requerida.',
-			'answer.required' => 'La respuesta es requerido.',
-			'question.unique' => 'La pregunta ya esta siendo usada.',
-			'question.exists' => 'La pregunta ya esta siendo usada.',
-		];
-	}
-
-	/**
-	* Customize the name of the attributes
-	*
-	* @return array
-	*/
-	public function attributes()
-	{
-		return [
-				'question' => 'Pregunta',
-				'answer' => 'Respuesta'
-		];
-	}
-
 	public function response(array $errors)
 	{
 		if ($this->expectsJson()) {

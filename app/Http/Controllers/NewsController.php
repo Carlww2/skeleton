@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\NewRequest;
-use Illuminate\Support\Facades\File;
 use App\Models\News;
 use Image;
 
@@ -27,19 +26,14 @@ class NewsController extends Controller
 	}
 
 	public function store(NewRequest $req){
-		$photo = $req->file('photo');
-
 		$new = new News();
 
 		$new->title = $req->title;
 		$new->content = $req->content;
-		$new->photo = time().'.'.$photo->getClientOriginalExtension();
+		$new->photo = time().'.'.$req->file('photo')->getClientOriginalExtension();
 
 		if ( $new->save() ){
-			File::makeDirectory(public_path()."/img/news/".$new->id, 0777, true, true);
-			$path = public_path()."/img/news/".$new->id."/".$new->photo;
-			Image::make($photo)->save($path);
-
+			$this->uploadFile('/img/news/'.$new->id, $req->file('photo'), $new->photo);
 			return Redirect()->route('News')->with('msg', __('panel.s-create-item', ['item' => __('panel.new')]));
 		} else {
 			return Redirect()->back()->with('msg', __('panel.e-create-item', ['item' => __('panel.new')]));
@@ -47,17 +41,14 @@ class NewsController extends Controller
 	}
 
 	public function update(NewRequest $req, $id){
-		$photo = $req->file('photo');
-
 		$new = News::find($id);
 		$new->title = $req->title;
 		$new->content = $req->content;
 
-		if ( $photo ){
-			File::cleanDirectory(public_path()."/img/news/".$new->id."/");
-			$new->photo = time().'.'.$photo->getClientOriginalExtension();
-			$path = public_path()."/img/news/".$new->id."/".$new->photo;
-			Image::make($photo)->save($path);
+		if ( $req->file('photo') ){
+			$new->photo = time().'.'.$req->file('photo')->getClientOriginalExtension();
+			$this->directoryActions('/img/news/'.$new->id."/", 1);
+			$this->uploadFile('/img/news/'.$new->id, $req->file('photo'), $new->photo);
 		}
 
 		if ( $new->save() ){
@@ -69,7 +60,7 @@ class NewsController extends Controller
 
 	public function destroy($id){
 		if ( News::destroy($id) ) {
-			File::deleteDirectory(public_path()."/img/news/".$id."/");
+			$this->directoryActions("/img/news/".$id, 2);
 			return ['delete' => 'true'];
 		} else {
 			return ['delete' => 'false'];
@@ -79,7 +70,7 @@ class NewsController extends Controller
 	public function multipleDestroys(NewRequest $req){
 		if ( News::destroy($req->ids) ){
 			foreach ($req->ids as $id) {
-				File::deleteDirectory(public_path()."/img/news/".$id."/");
+				$this->directoryActions("/img/news/".$id, 2);
 			}
 			return ["delete" => "true"];
 		}

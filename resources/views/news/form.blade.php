@@ -37,6 +37,7 @@
 				<div class="form-group col-md-{{$new->photo?'9':'12'}} {{$errors->new->first('photo')?'has-error':''}}">
 					{{Form::label('photo', __('panel.news.photo'), ['class' => !$new->id?'label-control required':'label-control'])}}
 					{{Form::file('photo', ['class' =>!$new->id?'form-control not-empty file image':'form-control file image', 'data-name' => __('panel.news.photo')])}}
+					{{@$errors->new->first('photo')}}
 				</div>
 			</div>
 			<div class="row text-left buttons-form">

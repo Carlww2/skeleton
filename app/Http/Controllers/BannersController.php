@@ -46,16 +46,11 @@ class BannersController extends Controller
 	 */
 	public function store(BannerRequest $req)
 	{
-		$image = $req->file('image');
-
 		$banner = new Banner();
-		$banner->image = time().'.'.$image->getClientOriginalExtension();
+		$banner->image = time().'.'.$req->file('image')->getClientOriginalExtension();
 
 		if ( $banner->save() ){
-			File::makeDirectory(public_path()."/img/banners/".$banner->id, 0777, true, true);
-			$path = public_path()."/img/banners/".$banner->id."/".$banner->image;
-			Image::make($image)->save($path);
-
+			$this->uploadFile('/img/banners/'.$banner->id, $req->file('image'), $banner->image);
 			return Redirect()->route('Banner')->with('msg',  __('panel.s-create-item', ['item' => __('panel.banner')]));
 		} else {
 			return Redirect()->back()->with('msg', __('panel.e-create-item', ['item' => __('panel.banner')]));
@@ -71,15 +66,11 @@ class BannersController extends Controller
 	 */
 	public function update(BannerRequest $req, $id)
 	{
-		$image = $req->file('image');
-
 		$banner = Banner::find($id);
-
-		if ( $image ){
-			File::cleanDirectory(public_path()."/img/banners/".$banner->id."/");
-			$banner->image = time().'.'.$image->getClientOriginalExtension();
-			$path = public_path()."/img/banners/".$banner->id."/".$banner->image;
-			Image::make($image)->save($path);
+		if ( $req->file('image') ){
+			$banner->image = time().'.'.$req->file('image')->getClientOriginalExtension();
+			$this->directoryActions('/img/banners/'.$banner->id."/", 1);
+			$this->uploadFile('/img/banners/'.$banner->id, $req->file('image'), $banner->image);
 		}
 
 		if ( $banner->save() ){
@@ -98,7 +89,7 @@ class BannersController extends Controller
 	public function destroy($id)
 	{
 		if ( Banner::destroy($id) ) {
-			File::deleteDirectory(public_path()."/img/banners/".$id."/");
+			$this->directoryActions("/img/banners/".$id, 2);
 			return ['delete' => 'true'];
 		} else {
 			return ['delete' => 'false'];
@@ -108,7 +99,7 @@ class BannersController extends Controller
 	public function multipleDestroys(BannerRequest $req){
 		if ( Banner::destroy($req->ids) ){
 			foreach ($req->ids as $id) {
-				File::deleteDirectory(public_path()."/img/banners/".$id."/");
+				$this->directoryActions("/img/banners/".$id, 2);
 			}
 			return ["delete" => "true"];
 		}

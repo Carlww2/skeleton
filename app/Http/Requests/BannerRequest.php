@@ -29,36 +29,14 @@ class BannerRequest extends FormRequest
 				return [];
 			case 'POST':
 				return [
-					'image' => 'required',
+					'image' => 'required|mimes:jpeg,png,jpg,gif',
 				];
 			case 'PUT':
-				return [];
+				return [
+					'image' => 'present|mimes:jpeg,png,jpg,gif',
+				];
 			default:break;
 		}
-	}
-
-	/**
-	* Get the error messages for the defined validation rules.
-	*
-	* @return array
-	*/
-	public function messages()
-	{
-		return [
-			'image.required' => 'La imagen es requerida.',
-		];
-	}
-
-	/**
-	* Customize the name of the attributes
-	*
-	* @return array
-	*/
-	public function attributes()
-	{
-		return [
-			'image' => 'Imagen'
-		];
 	}
 
 	public function response(array $errors)

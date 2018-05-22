@@ -46,12 +46,12 @@ Route::group(['middleware' => ['auth']], function() {
 
 	#Noticias
 	Route::get('noticias', 'NewsController@index')->name('News');
-	Route::get('formulatio-Noticias/{id?}', 'NewsController@form')->name('News.form');
-	Route::post('alta-Noticia', 'NewsController@store')->name('News.store');
-	Route::put('actualizar-Noticia/{id}', 'NewsController@update')->name('News.update');
-	Route::patch('status-Noticia', 'NewsController@status')->name('News.status');
-	Route::delete('eliminar-Noticia/{id}', 'NewsController@destroy')->name('News.destroy');
-	Route::delete('eliminar-Noticias', 'NewsController@multipleDestroys')->name('News.multipleDestroys');
+	Route::get('formulario-noticias/{id?}', 'NewsController@form')->name('News.form');
+	Route::post('alta-noticia', 'NewsController@store')->name('News.store');
+	Route::put('actualizar-noticia/{id}', 'NewsController@update')->name('News.update');
+	Route::patch('status-noticia', 'NewsController@status')->name('News.status');
+	Route::delete('eliminar-noticia/{id}', 'NewsController@destroy')->name('News.destroy');
+	Route::delete('eliminar-noticias', 'NewsController@multipleDestroys')->name('News.multipleDestroys');
 
 	#Banners
 	Route::get('banners', 'BannersController@index')->name('Banner');

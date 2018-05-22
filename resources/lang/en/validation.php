@@ -116,6 +116,19 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'title' => 'Title',
+        'content' => 'Content',
+        'image' => 'Image',
+        'photo' => 'Photography',
+
+        'fullname' => 'Fullname',
+        'phone' => 'Phone',
+        'email' => 'E-mail',
+        'password' => 'Password',
+
+        'question' => 'Question',
+        'answer' => 'Answer'
+    ],
 
 ];

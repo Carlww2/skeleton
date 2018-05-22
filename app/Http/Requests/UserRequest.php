@@ -67,37 +67,6 @@ class UserRequest extends FormRequest
 		}
 	}
 
-	/**
-	* Get the error messages for the defined validation rules.
-	*
-	* @return array
-	*/
-	public function messages()
-	{
-		return [
-			'unique' => ':attribute ya esta siendo usado.',
-			'required' => ':attribute es requerido.',
-			'password.required' => 'La contraseña es requerido.',
-			'min' => ':attribute debe tener minímo :min caracteres.',
-			'regex' => 'El formato del campo :attribute no es válido'
-		];
-	}
-
-	/**
-	* Customize the name of the attributes
-	*
-	* @return array
-	*/
-	public function attributes()
-	{
-		return [
-			'fullname' => 'Nombre completo',
-			'phone' => 'Teléfono',
-			'email' => 'Correo electrónico',
-			'password' => 'Contraseña',
-		];
-	}
-
 	public function response(array $errors)
 	{
 		if ($this->expectsJson() || $this->ajax()) {
