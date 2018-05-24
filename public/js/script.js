@@ -2,7 +2,7 @@ $(function(){
 	createTable();
 	$('[data-toggle="tooltip"]').tooltip()
 	$("select.select2").select2();
-	$("#s2id_byUser").addClass('col-md-12').css('padding','0')
+	/*$("#s2id_byUser").addClass('col-md-12').css('padding','0')*/
 	$("#start_date").datepicker({
 		language: lang.language,
 		autoclose: true,
@@ -388,6 +388,10 @@ $(document).delegate(".change_status",'click',function(e){
 		}
 	}).catch(swal.noop)
 })
+
+function destroyCroppie(){
+	$('#foto_perfil').croppie('destroy');
+}
 
 function refreshTable(url){
 	var table = $(".datatable").dataTable();

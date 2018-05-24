@@ -67,7 +67,7 @@
 				{{ Form::close() }}
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-danger" data-dismiss="modal">@lang('panel.cancel')</button>
+				<button type="button" class="btn btn-danger" data-dismiss="modal" onclick="destroyCroppie()">@lang('panel.cancel')</button>
 				<button type="submit" class="btn btn-success guardar" data-target="pictureForm">@lang('panel.save')</button>
 			</div>
 		</div>
