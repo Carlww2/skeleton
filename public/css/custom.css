@@ -1,4 +1,7 @@
 /* CLASES USADAS DENTRO DEL CMS */
+div.header.navbar.navbar-inverse{
+	box-shadow: 0 2px 1px 0 rgba(0, 0, 0, 0.1), 0 4px 5px 0 rgba(0, 0, 0, 0.15);
+}
 .logo{
 	margin-left: 10%;
 }
@@ -32,11 +35,13 @@ form.valid label.required:after{
 button.btn, a.btn{
 	-webkit-transition: 0.8s all ease-out !important;
 	transition: 0.8s all ease-out !important;
+	box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.08), 0px 2px 1px 0px rgba(0, 0, 0, 0.12);
 }
 button.disabled, a.disabled{
 	-webkit-transition: 0.8s all ease-out !important;
 	transition: 0.8s all ease-out !important;
 	background: gray !important;
+	box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.08), 0px 2px 1px 0px rgba(0, 0, 0, 0.12);
 }
 .prev_container{
 	position: relative;
@@ -56,13 +61,15 @@ textarea {
 }
 .content-body{
 	background: white;
-	padding: 15px;
+	padding: 20px 15px;
+	box-shadow: 0px 2px 1px 2px rgba(0, 0, 0, 0.04), 0 1px 3px 0 rgba(0, 0, 0, 0.09);
 }
 .buttons-container{
 	margin: 18px 0px;
 	background: ghostwhite;
 	padding: 8px;
 	border-radius: 5px;
+	/*box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.08), 0px 2px 1px 0px rgba(0, 0, 0, 0.12);*/
 }
 div.row.buttons-form{
 	margin: 10px 0px !important;
@@ -79,6 +86,7 @@ div.row.buttons-form{
 .dropdown-menu.pull-right, .page-sidebar{
 	background: #323237 !important;
 	padding-bottom: 5%;
+	box-shadow: 0 2px 1px 0 rgba(0, 0, 0, 0.1), 0 4px 5px 0 rgba(0, 0, 0, 0.15);
 }
 .navbar .nav > li > .dropdown-menu::after{
 	border-bottom: 6px solid #6b6565;
@@ -131,6 +139,42 @@ span.on{
 }
 span.display-counter{
 	float: right;
+}
+/*buttons animation*/
+.btn{
+  position: relative;
+  overflow: hidden;
+}
+.btn:after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  background: rgba(255, 255, 255, .5);
+  opacity: 0;
+  border-radius: 100%;
+  transform: scale(1, 1) translate(-50%);
+  transform-origin: 50% 50%;
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0, 0);
+    opacity: 1;
+  }
+  20% {
+    transform: scale(25, 25);
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(40, 40);
+  }
+}
+.btn:focus:not(:active)::after {
+  animation: ripple 1s ease-out;
 }
 @media only screen and (max-width: 768px) {
 	#header_task_bar{
