@@ -31,13 +31,13 @@ class NewRequest extends FormRequest
 				return [
 					'title'  => 'required|unique:news',
 					'content' => 'required',
-					'photo' => 'required|mimes:jpeg,png,jpg,gif',
+					'photo' => 'required|file|image|mimes:jpeg,png,jpg,gif|max:3070',
 				];
 			case 'PUT':
 				return [
 					'title' => 'required|unique:news,title,'.$this->route('id'),
 					'content' => 'required',
-					'photo' => 'present|mimes:jpeg,png,jpg,gif',
+					'photo' => 'present|file|image|mimes:jpeg,png,jpg,gif|max:3070',
 				];
 			default:break;
 		}

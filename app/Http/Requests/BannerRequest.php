@@ -29,11 +29,11 @@ class BannerRequest extends FormRequest
 				return [];
 			case 'POST':
 				return [
-					'image' => 'required|mimes:jpeg,png,jpg,gif',
+					'image' => 'required|file|image|mimes:jpeg,png,jpg,gif|max:3070',
 				];
 			case 'PUT':
 				return [
-					'image' => 'present|mimes:jpeg,png,jpg,gif',
+					'image' => 'present|file|image|mimes:jpeg,png,jpg,gif|max:3070',
 				];
 			default:break;
 		}
