@@ -31,7 +31,7 @@
 			<div class="row">
 				@if( $new->photo )
 					<div class="col-md-3">
-						<img src="{{asset('img/news/'.$new->id.'/'.$new->photo)}}" alt="Foto noticia" class="show">
+						<img src="{{asset($new->photo)}}" alt="Foto noticia" class="show">
 					</div>
 				@endif
 				<div class="form-group col-md-{{$new->photo?'9':'12'}} {{$errors->new->first('photo')?'has-error':''}}">

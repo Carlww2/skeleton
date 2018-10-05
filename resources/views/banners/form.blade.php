@@ -18,7 +18,7 @@
 			<div class="row">
 				@if( $banner->image )
 					<div class="col-md-3">
-						<img src="{{asset('img/banners/'.$banner->id.'/'.$banner->image)}}" alt="Foto banner" class="show">
+						<img src="{{asset($banner->image)}}" alt="Foto banner" class="show">
 					</div>
 				@endif
 				<div class="form-group col-md-{{$banner->image?'9':'12'}} {{$errors->banner->first('image')?'has-error':''}}">

@@ -19,14 +19,9 @@ class CompaniesController extends Controller
 		$company->fill( $req->except('logo') );
 
 		if ( $req->hasFile('logo') ){
-			$path = public_path()."/img/company";
-			if( !File::exists($path) ) {
-				File::makeDirectory(public_path()."/img/company/", 0777, true, true);
-			} else {
-				File::cleanDirectory(public_path()."/img/company/");
-			}
-			$company->logo = time().'.'.$req->file('logo')->getClientOriginalExtension();
-			Image::make($req->file('logo'))->save($path.'/'.$company->logo);
+			$this->deleteFiles($company->logo);
+			$company->logo = $logo = time().'.'.$req->file('logo')->getClientOriginalExtension();
+			$this->uploadFile('/img/company/', $req->file('logo'), $logo);
 		}
 
 		if ( $company->save() ){

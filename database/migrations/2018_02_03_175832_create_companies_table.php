@@ -21,8 +21,7 @@ class CreateCompaniesTable extends Migration
             $table->text('privacy')->nullable();
             $table->text('terms_conditions')->nullable();
             $table->string('logo', 40)->nullable();
-            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
+            $table->timestamps();
         });
     }
 

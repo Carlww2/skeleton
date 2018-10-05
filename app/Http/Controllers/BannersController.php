@@ -47,10 +47,10 @@ class BannersController extends Controller
 	public function store(BannerRequest $req)
 	{
 		$banner = new Banner();
-		$banner->image = time().'.'.$req->file('image')->getClientOriginalExtension();
+		$banner->image = $image = time().'.'.$req->file('image')->getClientOriginalExtension();
 
 		if ( $banner->save() ){
-			$this->uploadFile('/img/banners/'.$banner->id, $req->file('image'), $banner->image);
+			$this->uploadFile('/img/banners/', $req->file('image'), $image);
 			return Redirect()->route('Banner')->with('msg',  __('panel.s-create-item', ['item' => __('panel.banner')]));
 		} else {
 			return Redirect()->back()->with('msg', __('panel.e-create-item', ['item' => __('panel.banner')]));
@@ -68,9 +68,9 @@ class BannersController extends Controller
 	{
 		$banner = Banner::find($id);
 		if ( $req->file('image') ){
-			$banner->image = time().'.'.$req->file('image')->getClientOriginalExtension();
-			$this->directoryActions('/img/banners/'.$banner->id."/", 1);
-			$this->uploadFile('/img/banners/'.$banner->id, $req->file('image'), $banner->image);
+			$this->deleteFiles($banner->image);
+			$banner->image = $image = time().'.'.$req->file('image')->getClientOriginalExtension();
+			$this->uploadFile('/img/banners/', $req->file('image'), $image);
 		}
 
 		if ( $banner->save() ){
@@ -88,8 +88,10 @@ class BannersController extends Controller
 	 */
 	public function destroy($id)
 	{
-		if ( Banner::destroy($id) ) {
-			$this->directoryActions("/img/banners/".$id, 2);
+		$banner = Banner::find($id);
+		if ( $banner ) {
+			$this->deleteFiles($banner->image);
+			Banner::destroy($id);
 			return ['delete' => 'true'];
 		} else {
 			return ['delete' => 'false'];
@@ -97,10 +99,12 @@ class BannersController extends Controller
 	}
 
 	public function multipleDestroys(BannerRequest $req){
-		if ( Banner::destroy($req->ids) ){
-			foreach ($req->ids as $id) {
-				$this->directoryActions("/img/banners/".$id, 2);
-			}
+		$banners = Banner::whereIn('id', $req->ids)->get();
+		if ( $banners ){
+			$banners->each(function($banner, $key){
+				$this->deleteFiles($banner->image);
+				Banner::destroy($banner->id);
+			});
 			return ["delete" => "true"];
 		}
 		return ['delete' => 'false'];

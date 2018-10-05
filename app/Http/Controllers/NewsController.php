@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\NewRequest;
 use App\Models\News;
+use Illuminate\Support\Facades\File;
 use Image;
 
 class NewsController extends Controller
@@ -27,13 +28,12 @@ class NewsController extends Controller
 
 	public function store(NewRequest $req){
 		$new = new News();
-
 		$new->title = $req->title;
 		$new->content = $req->content;
-		$new->photo = time().'.'.$req->file('photo')->getClientOriginalExtension();
+		$new->photo = $photo = time().'.'.$req->file('photo')->getClientOriginalExtension();
 
 		if ( $new->save() ){
-			$this->uploadFile('/img/news/'.$new->id, $req->file('photo'), $new->photo);
+			$this->uploadFile('/img/news/', $req->file('photo'), $photo);
 			return Redirect()->route('News')->with('msg', __('panel.s-create-item', ['item' => __('panel.new')]));
 		} else {
 			return Redirect()->back()->with('msg', __('panel.e-create-item', ['item' => __('panel.new')]));
@@ -46,9 +46,9 @@ class NewsController extends Controller
 		$new->content = $req->content;
 
 		if ( $req->file('photo') ){
-			$new->photo = time().'.'.$req->file('photo')->getClientOriginalExtension();
-			$this->directoryActions('/img/news/'.$new->id."/", 1);
-			$this->uploadFile('/img/news/'.$new->id, $req->file('photo'), $new->photo);
+			$this->deleteFiles($new->photo);
+			$new->photo = $photo = time().'.'.$req->file('photo')->getClientOriginalExtension();
+			$this->uploadFile('/img/news/', $req->file('photo'), $photo);
 		}
 
 		if ( $new->save() ){
@@ -59,8 +59,10 @@ class NewsController extends Controller
 	}
 
 	public function destroy($id){
-		if ( News::destroy($id) ) {
-			$this->directoryActions("/img/news/".$id, 2);
+		$new = News::find($id);
+		if ( $new ) {
+			$this->deleteFiles($new->photo);
+			News::destroy($id);
 			return ['delete' => 'true'];
 		} else {
 			return ['delete' => 'false'];
@@ -68,10 +70,12 @@ class NewsController extends Controller
 	}
 
 	public function multipleDestroys(NewRequest $req){
-		if ( News::destroy($req->ids) ){
-			foreach ($req->ids as $id) {
-				$this->directoryActions("/img/news/".$id, 2);
-			}
+		$news = News::whereIn('id', $req->ids)->get();
+		if ( $news ){
+			$news->each(function($new, $key){
+				$this->deleteFiles($new->photo);
+				News::destroy($new->id);
+			});
 			return ["delete" => "true"];
 		}
 		return ['delete' => 'false'];
@@ -79,7 +83,7 @@ class NewsController extends Controller
 
 	public function status(Request $req){
 		$new = News::find($req->id);
-		$new->status = $new->status?'0':'1';
+		$new->status = $new->status?0:1;
 		if ( $new->save() ) {
 			return ['status' => true];
 		} else {

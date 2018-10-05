@@ -47,14 +47,14 @@
 					</div>
 				</div>
 				<div class="row">
-					@if( $company->picture )
+					@if( $company->logo )
 						<div class="col-md-3">
-							<img src="{{asset('img/company/'.$company->picture)}}" alt="Foto empresa" class="show">
+							<img src="{{asset($company->logo)}}" alt="Foto empresa" class="show">
 						</div>
 					@endif
-					<div class="form-group col-md-{{$company->picture?'9':'12'}}">
-						{{Form::label('picture',  __('panel.company.logo'), ['class' => !$company->picture?'label-control required':'label-control'])}}
-						{{Form::file('picture', ['class' =>!$company->picture?'form-control not-empty file image':'form-control file image', 'data-name' =>  __('panel.company.logo')])}}
+					<div class="form-group col-md-{{$company->logo?'9':'12'}}">
+						{{Form::label('logo',  __('panel.company.logo'), ['class' => !$company->logo?'label-control required':'label-control'])}}
+						{{Form::file('logo', ['class' =>!$company->logo?'form-control not-empty file image':'form-control file image', 'data-name' =>  __('panel.company.logo')])}}
 					</div>
 				</div>
 				<div class="row text-left buttons-form">

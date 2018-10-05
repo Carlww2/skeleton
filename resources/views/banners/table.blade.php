@@ -23,7 +23,7 @@
 						</div>
 					</td>
 					<td>
-						<img src="{{asset('img/banners/'.$banner->id.'/'.$banner->image)}}" alt="Foto banner" width="25%">
+						<img src="{{asset($banner->image)}}" alt="Foto banner" width="25%">
 					</td>
 					<td>
 						@if($banner->status)

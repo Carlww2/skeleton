@@ -28,9 +28,9 @@ trait CommonFunctions
 	}
 
 	/*
-	* Descrición: Función para subir archivos, crear, limpiar y eliminar carpetas;
-	* Parametros: ruta destino, archivo, dimenciones (width, height)
-	* return void
+	* Descrición: Función para subir archivos y crear carpetas;
+	* Parametros: ruta destino, archivo, dimensiones (width, height)
+	* return boolean
 	*/
 	public function uploadFile($path, $file, $filename, $fit = null){
 		$path = public_path().$path;
@@ -40,23 +40,36 @@ trait CommonFunctions
 		}
 
 		if ( $fit ) {
-			Image::make($file)->fit($fit[0], $fit[1])->save($path."/".$filename);
+			$img = Image::make($file)->fit($fit[0], $fit[1])->save($path."/".$filename);
 		} else {
-			Image::make($file)->save($path."/".$filename);
+			$img = Image::make($file)->save($path."/".$filename);
 		}
 	}
 
 	/*
-	* Descrición: Función para subir archivos, crear, limpiar y eliminar carpetas;
-	* Parametros: nombre del directorio, id del registro, acción (1 limpiar, 2 eliminar)
+	* Descrición: Función eliminar archivos;
+	* Parametros: Ruta relativa del archivo
 	* return void
 	*/
-	public function directoryActions($path, $action){
+	public function deleteFiles($path){
+		$fullPath = public_path() . $path;
+		if ( File::exists($fullPath) ){
+			File::delete($fullPath);
+		}
+	}
+
+	/*
+	* Descrición: Función limpiar o eliminar carpetas;
+	* Parametros: Ruta relativa del directoria, acción (1 limpiar, 2 eliminar)
+	* return void
+	*/
+	public function deleteDirectories($path, $action){
+		$fullpath = public_path() . $path;
 		if ( File::exists($path) ){
 			if ( $action == 1 ){
-				File::cleanDirectory(public_path().$path."/");
+				File::cleanDirectory($fullPath."/");
 			} elseif( $action == 2 ){
-				File::deleteDirectory(public_path().$path."/");
+				File::deleteDirectory($fullPath."/");
 			}
 		}
 	}
